@@ -1,0 +1,48 @@
+Libraries and nuget packages for catalog microservice:-
+
+1.. MediatR for CQRS
+2.. Carter for API Endpoint
+3.. Marten for PostgreSQL interaction
+4.. Mapster for object mapping
+5.. FluentValidation for input validation
+
+Architecture:- Vertical Slice Architecture
+
+Vertical Slice Architecture is a way of structuring your application around features instead of traditional layers like Controller → Service → Repository.
+
+🧠 Core Idea
+
+Instead of grouping code by technical layers, you group it by use-cases (features).
+
+👉 Each “slice” represents one complete feature and contains everything needed:
+
+API endpoint / controller
+business logic
+data access
+validation
+
+📦 Example
+
+Instead of this layered structure:
+
+Controllers/
+Services/
+Repositories/
+Models/
+
+You organize like:
+
+Features/
+ ├── CreateOrder/
+ │    ├── CreateOrderController.cs
+ │    ├── CreateOrderHandler.cs
+ │    ├── CreateOrderRequest.cs
+ │    └── CreateOrderValidator.cs
+ │
+ ├── GetOrder/
+ │    ├── GetOrderController.cs
+ │    ├── GetOrderHandler.cs
+ │    └── GetOrderQuery.cs
+
+Each feature is independent → like a “mini-module”.
+

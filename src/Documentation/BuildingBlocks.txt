@@ -1,0 +1,4 @@
+Building blocks is a common base class for CQRS abstractions (mediatiator operations) 
+It will contain all the common nuget libraries for entire microservices
+Help to manage version
+It will be used across all microservice.
