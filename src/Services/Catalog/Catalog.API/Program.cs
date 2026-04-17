@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
@@ -6,6 +7,9 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(typeof(Program).Assembly);
 });
+
+// Register Fluent Validator => scans for any validator in assembly and register it
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
 // configure database
 builder.Services.AddMarten(opts =>
