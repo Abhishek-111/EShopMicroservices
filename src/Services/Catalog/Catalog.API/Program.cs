@@ -2,15 +2,16 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
-builder.Services.AddCarter();
+var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    config.RegisterServicesFromAssembly(assembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
 });
-
 // Register Fluent Validator => scans for any validator in assembly and register it
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+builder.Services.AddValidatorsFromAssembly(assembly);
 
+builder.Services.AddCarter();
 // configure database
 builder.Services.AddMarten(opts =>
 {
@@ -18,9 +19,41 @@ builder.Services.AddMarten(opts =>
 
 }).UseLightweightSessions();
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request Pipeline
 app.MapCarter();
+
+app.UseExceptionHandler(options => { });
+
+// Global Exception handler
+//app.UseExceptionHandler(exceptionHandlerApp =>
+//{
+//    exceptionHandlerApp.Run(async context =>
+//    {
+//        var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+//        if (exception is null)
+//        {
+//            return;
+//        }
+
+//        var problemDetails = new ProblemDetails
+//        {
+//            Title = exception.Message,
+//            Status = StatusCodes.Status500InternalServerError,
+//            Detail = exception.StackTrace
+//        };
+
+//        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+//        logger.LogError(exception, exception.Message);
+
+//        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+//        context.Response.ContentType = "application/problem+json";
+
+//        await context.Response.WriteAsJsonAsync(problemDetails);
+//    });
+//});
 
 app.Run();
