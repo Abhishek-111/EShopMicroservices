@@ -1,0 +1,9 @@
+Why Choose Redis for distributed caching
+
+Redis is an advanced key-value store known for it's high performance.
+It is often used for caching session storage, pub/sub systems and more.
+Redis offers in-memory data storage, resulting in fast data access.
+It support for various data structures make it versatile for different use cases
+Redis is an excellent choice for microservices architecture primarily due to it's
+distributed characteristics.
+It enables services to access data quickly and reducing the load on the database.

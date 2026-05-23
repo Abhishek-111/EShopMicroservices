@@ -1,0 +1,7 @@
+Scrutor library:
+	.net library that extends the built-in IOC container of ASP.NET Core. It provides 
+	additional capabilities to scan and register services in a more flexible way.
+
+Usage:
+	Implementing patterns like Decorator in a clean and managealbe way. It simplifies the process
+	of service registration and decoration in ASP.NET core applications
