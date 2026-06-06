@@ -1,0 +1,47 @@
+
+Synchronous Communication:
+
+- Synchronous communication is using HTTP or gRPC protocol for returning synchronous response.
+- The client sends a request and waits for a response for the service
+- The client code block their thread, until the response reach from the server
+- The synchronous communication protocol can be HTTP or HTTPS.
+- The client sends a request with using http protocols and waits for a response from the service.
+- The client call the server and block client their operations.
+- The client code will continue it's task when it receives the HTTP server response.
+
+
+Asynchronous Communication:
+
+- The client sends a request but it doesn't wait for a response from the server.
+- The client should not have blocked a thread while waiting for a response.
+- AMQP (Advanced Message Queuing Protocol)
+- Using AMQP protocols, the client sends the message with using message broker system like kafka and
+  RabbitMQ queue.
+- The message producer does not wait for a response.
+
+
+gRPC : High performance Remote Procedure Calls
+
+- gRPC is an open source remote procedure call (RPC) system developed at Google
+- gRPC is a framework to effeciently connect services and build distributed systems.
+- It is focused on high performance and uses HTTP/2 protocol to transport binary messages.
+- It relies on the protocol buffers language to define service contracts.
+- Protocol Buffers (Protobuf) allow to define the interface to be used in service communication regardless of the 
+  programming language
+- It generates cross-platform client and server bindings for many languages.
+- Most common usage scenarios include connecting services in microservices style architecture.
+- gRPC framework allows developers to create services that can communicate with each other efficiently
+  and independently with their preffered programming language.
+- The feature simplifies the creation of service interaction and together with high performance, 
+   makes gRPC the ideal framework for creating microservices.
+
+
+How gRPC works?
+
+- RPC is a form of client-server communication that uses a function call rather than a usual HTTP call.
+- gRPC works on the idea of defining a service and methods, and these can be called remotely with their
+  parameters and return types.
+- On the server side, the server implements this interface and runs a gRPC server to handle client calls.
+- In gRPC , the client application can directly call a method on a server application on different machine like a local object.
+- On the server side, the server implements  this interface and runs a gRPC server to handle client calls.
+- gRPC clients and servers can work and talk to each other in a different of environments.
